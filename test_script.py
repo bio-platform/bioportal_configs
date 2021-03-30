@@ -50,6 +50,7 @@ def check_config():
 			else:
 				print("UNKNOWN ERROR")
 				return 1
+	return 0
 
 assert check_config() == 0
 	
