@@ -51,7 +51,7 @@ def check_config():
 				print("UNKNOWN ERROR")
 				return 1
 
-print(check_config())
+assert check_config() == 0
 	
 
 #t.apply(input = True, var = {"floating_ip": "78.128.250.94", "token":"gAAAAABgXc2yr5VbgeJqpErCFejH7idVZe6St7EsWJrVS6136E6TSmljtq42f3rkmV-YSX8SeEnC-KqoNdPZLYnRZiDu44r_F69l_ajg1VRaoEabYJitalumE0HKMlowY5D55WvL7XDftD29AG4oj10eaaQ0XTSMQH6ZLubT2Gs2W9qz-n2Ih_fQnWkEcJnctqPAjdJKmtHC", "ssh": "key", "local_network_id": "03b21c24-910f-4ec5-a8f3-419db219b383"}, skip_plan = True)
