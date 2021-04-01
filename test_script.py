@@ -25,7 +25,8 @@ def check_config():
 		if machine["variables"].get("api") is not None:
 			missing_endpoints = []
 			for api in 	machine["variables"]["api"]:
-				if data.get("api_endpoints") is None or data["api_endpoints"].get(api) is None:
+				if data.get("api_endpoints") is None or \
+						data["api_endpoints"].get(api) is None:
 					missing_endpoints.append(api)
 			if missing_endpoints:
 				print("MISSING ENDPOINTS FOR API VARIABLES: ", missing_endpoints)
@@ -44,14 +45,14 @@ def check_config():
 					if var not in defined_variables:
 						missing_variables.append(var)
 				if missing_variables:
-					print("THERE ARE MISSING VARIABLES, WHICH ARE DEFINED IN %s, PLEASE SPECIFY THEM IN config.json" %machine["name"])
+					print("THERE ARE MISSING VARIABLES, WHICH ARE DEFINED IN %s, "
+						  "PLEASE SPECIFY THEM IN config.json" %machine["name"])
 					print("MISSING VARIABLES: ", missing_variables)
 					return 1
 			else:
 				print("UNKNOWN ERROR")
 				return 1
+	return 0
+
 
 assert check_config() == 0
-	
-
-#t.apply(input = True, var = {"floating_ip": "78.128.250.94", "token":"gAAAAABgXc2yr5VbgeJqpErCFejH7idVZe6St7EsWJrVS6136E6TSmljtq42f3rkmV-YSX8SeEnC-KqoNdPZLYnRZiDu44r_F69l_ajg1VRaoEabYJitalumE0HKMlowY5D55WvL7XDftD29AG4oj10eaaQ0XTSMQH6ZLubT2Gs2W9qz-n2Ih_fQnWkEcJnctqPAjdJKmtHC", "ssh": "key", "local_network_id": "03b21c24-910f-4ec5-a8f3-419db219b383"}, skip_plan = True)
