@@ -25,3 +25,7 @@ variable "floating_ip" {
 variable "token" {
   type = string
 }
+
+variable "flavor" {
+    type = string
+}
