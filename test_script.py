@@ -43,21 +43,23 @@ def check_terraform(machines):
 				print(machine["name"],
 					  "NO TERRAFORM FILE FOUND, PLEASE CREATE ONE")
 				return 1
-			if log.find("No value for required variable"):
+
+			if log.find("No value for required variable") != -1:
 				variables = get_variables_from_log(log)
 				missing_variables = []
 				for var in variables:
 					if var not in defined_variables:
 						missing_variables.append(var)
+
 				if missing_variables:
 					print(machine["name"],
 						  "THERE ARE MISSING VARIABLES, WHICH ARE DEFINED IN %s, "
 						  "PLEASE SPECIFY THEM IN config.json" %machine["name"])
 					print("MISSING VARIABLES: ", missing_variables)
 					return 1
-			else:
-				print(machine["name"], "UNKNOWN ERROR")
-				return 1
+		else:
+			print(machine["name"], "UNKNOWN ERROR")
+			return 1
 	return 0
 
 
