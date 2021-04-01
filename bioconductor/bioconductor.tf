@@ -16,7 +16,6 @@ provider "openstack" {
     allow_reauth = false
 }
 
-
 resource "openstack_compute_instance_v2" "terraform_bio" {
 	name = var.instance_name
 	image_name = "debian-9-x86_64_bioconductor"
