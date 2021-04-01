@@ -2,7 +2,6 @@ from python_terraform import Terraform
 from os import listdir
 import json
 import re
-
 def get_variables_from_log(log):
 	p = re.compile(r': variable "[[a-z]+[\_[a-z]*')
 	res = p.findall(log)
@@ -10,71 +9,47 @@ def get_variables_from_log(log):
 		res[i] = res[i].replace(': variable "', '')
 	return res
 
-
-def check_json(machines, endpoints):
-	"""Check json rules"""
-	for machine in machines:
-		if machine.get("variables") is None:
-			print(machine["name"], "MISSING VARIABLES KEY")
-			return 1
-		if machine["variables"].get("api") is not None:
-			missing_endpoints = []
-			for api in machine["variables"]["api"]:
-				if endpoints is None or endpoints.get(api) is None:
-					missing_endpoints.append(api)
-			if missing_endpoints:
-				print(machine["name"],
-					  "MISSING ENDPOINTS FOR API VARIABLES: ",
-					  missing_endpoints)
-				return 1
-	return 0
-
-
-def check_terraform(machines):
-	"""Check terraform rules """
+def check_config():
 	defined_variables = []
-	for machine in machines:
+
+	with open('configurations.json') as json_file:
+		data = json.load(json_file)
+	for machine in data["machines"]:
+		print(machine["name"])
+		if machine.get("variables") is None:
+			print("MISSING VARIABLES KEY")
+			return 1
 		for _, value in machine["variables"].items():
 			defined_variables += value
+
+		if machine["variables"].get("api") is not None:
+			missing_endpoints = []
+			for api in 	machine["variables"]["api"]:
+				if data.get("api_endpoints") is None or data["api_endpoints"].get(api) is None:
+					missing_endpoints.append(api)
+			if missing_endpoints:
+				print("MISSING ENDPOINTS FOR API VARIABLES: ", missing_endpoints)
+				return 1
+
 		tf = Terraform(working_dir=machine["terraform_folder"])
 		code, err, log = tf.plan()
 		if code:
 			if log.find("No configuration files") != -1:
-				print(machine["name"],
-					  "NO TERRAFORM FILE FOUND, PLEASE CREATE ONE")
+				print("NO TERRAFORM FILE FOUND, PLEASE CREATE ONE")
 				return 1
-
-			if log.find("No value for required variable") != -1:
+			if log.find("No value for required variable"):
 				variables = get_variables_from_log(log)
 				missing_variables = []
 				for var in variables:
 					if var not in defined_variables:
 						missing_variables.append(var)
-
 				if missing_variables:
-					print(machine["name"],
-						  "THERE ARE MISSING VARIABLES, WHICH ARE DEFINED IN %s, "
-						  "PLEASE SPECIFY THEM IN config.json" %machine["name"])
+					print("THERE ARE MISSING VARIABLES, WHICH ARE DEFINED IN %s, PLEASE SPECIFY THEM IN config.json" %machine["name"])
 					print("MISSING VARIABLES: ", missing_variables)
 					return 1
-		else:
-			print(machine["name"], "UNKNOWN ERROR")
-			return 1
-	return 0
-
-
-def check_config():
-	"""Check whole file"""
-	with open('configurations.json') as json_file:
-		data = json.load(json_file)
-	if data.get("machines") is None:
-		print("NO MACHINES DEFINED")
-		return 1
-	if check_json(data["machines"], data.get("api_endpoints")):
-		return 1
-	if check_terraform(data["machines"]):
-		return 1	
-	return 0
+			else:
+				print("UNKNOWN ERROR")
+				return 1
 
 assert check_config() == 0
 	
