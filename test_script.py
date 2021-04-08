@@ -32,7 +32,7 @@ def check_config():
 				print("MISSING ENDPOINTS FOR API VARIABLES: ", missing_endpoints)
 				return 1
 
-		tf = Terraform(working_dir=machine["terraform_folder"])
+		tf = Terraform(working_dir=machine["name"])
 		code, err, log = tf.plan()
 		if code:
 			if log.find("No configuration files") != -1:
