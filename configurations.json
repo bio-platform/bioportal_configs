@@ -35,6 +35,26 @@
             ]     
        }
     }
+    {
+      "name": "terraform",
+      "variables":{
+       "api": ["ssh", "local_network_id", "floating_ip"],
+       "options": ["flavor"],
+       "session": ["token"],
+       "int": ["n", "volume_size"]
+       },
+      "flavor": {
+            "default": "standard.medium",
+            "options": [
+              "standard.tiny",
+              "standard.small",
+              "standard.medium",
+              "standard.large",
+              "standard.2core-16ram",
+              "standard.memory"
+            ]
+       }
+    }
   ],
     "api_endpoints": {
       "floating_ip": "/floating_ips",
