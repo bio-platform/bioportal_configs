@@ -11,6 +11,7 @@ provider "openstack" {
 	token = var.token
 	auth_url    = "https://identity.cloud.muni.cz/v3"
 	region      = "brno1"
+	allow_reauth = false
 }
 
 
