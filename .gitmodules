@@ -1,4 +1,4 @@
-[submodule "hadoop"]
-	path = hadoop
+[submodule "terraform"]
+	path = terraform
 	url = https://gitlab.meta.zcu.cz/HADOOP/terraform
 	branch = bio3
