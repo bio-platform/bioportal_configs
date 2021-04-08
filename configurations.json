@@ -2,7 +2,6 @@
   "machines": [
     {
       "name": "bioconductor",
-      "terraform_folder": "bioconductor/",
       "variables": {
       "api": ["ssh", "local_network_id", "floating_ip"],
       "string": ["instance_name"],
@@ -18,7 +17,6 @@
     },
     {
       "name": "clean_ubuntu",
-      "terraform_folder": "ubuntu/",
       "variables": {
        "api": ["ssh", "local_network_id", "floating_ip"],
        "string": ["instance_name"],
