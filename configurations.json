@@ -16,7 +16,7 @@
       }
     },
     {
-      "name": "clean_ubuntu",
+      "name": "ubuntu",
       "variables": {
        "api": ["ssh", "local_network_id", "floating_ip"],
        "string": ["instance_name"],
