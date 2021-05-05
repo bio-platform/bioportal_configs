@@ -2,7 +2,6 @@
   "machines": [
     {
       "name": "bioconductor",
-      "terraform_folder": "bioconductor/",
       "variables": {
       "api": ["ssh", "local_network_id", "floating_ip"],
       "string": ["instance_name"],
@@ -17,8 +16,7 @@
       }
     },
     {
-      "name": "clean_ubuntu",
-      "terraform_folder": "ubuntu/",
+      "name": "ubuntu",
       "variables": {
        "api": ["ssh", "local_network_id", "floating_ip"],
        "string": ["instance_name"],
@@ -35,6 +33,26 @@
               "standard.2core-16ram",
               "standard.memory"
             ]     
+       }
+    },
+    {
+      "name": "terraform",
+      "variables":{
+       "api": ["ssh", "local_network_id", "floating_ip"],
+       "options": ["flavor"],
+       "session": ["token"],
+       "int": ["n", "volume_size"]
+       },
+      "flavor": {
+            "default": "standard.medium",
+            "options": [
+              "standard.tiny",
+              "standard.small",
+              "standard.medium",
+              "standard.large",
+              "standard.2core-16ram",
+              "standard.memory"
+            ]
        }
     }
   ],
