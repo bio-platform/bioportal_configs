@@ -18,7 +18,7 @@ resource "openstack_compute_keypair_v2" "localkey" {
 }
 
 resource "local_file" "localkey_f" {
-	filename = localkey.name
+	filename = openstack_compute_keypair_v2.localkey.name
 	file_permission = "0600"
 	sensitive_content = openstack_compute_keypair_v2.localkey.private_key
 }
@@ -65,7 +65,7 @@ resource "openstack_compute_floatingip_associate_v2" "ubuntu_fip" {
     provisioner "local-exec" {
         command =  <<EOF
 pip3 install ansible
-ansible-playbook  -u deployadm -i '${self.floating_ip},' --private-key localkey.name --ssh-extra-args='-o StrictHostKeyChecking=no' playbook.yml
+ansible-playbook  -u deployadm -i '${self.floating_ip},' --private-key openstack_compute_keypair_v2.localkey.name --ssh-extra-args='-o StrictHostKeyChecking=no' playbook.yml
 EOF
     }
 }
