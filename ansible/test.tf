@@ -8,30 +8,26 @@ terraform {
 }
 
 provider "openstack" {
-	application_credential_id = "6f2bd352f056400baf71d97fc3ebb1f0"
-	application_credential_secret = "xrBr0537QgwXTFAEMpiUTE6WzEBpNtYNUnJ3jzgsaDoI-6f2zfyZuyImpqZTFVDe9KJ_9iBcLDsOLwbGcV6fHw"
+	token = var.token
 	auth_url    = "https://identity.cloud.muni.cz/v3"
 	region      = "brno1"
-	#endpoint_overrides = {
-	#	"compute" = "https://compute.cloud.muni.cz/v2.1"
-	#}
 }
 
 resource "openstack_compute_keypair_v2" "localkey" {
-	name = "temp_key"
+	name = join("", ["temp_key", uuid()]
 }
 
 resource "local_file" "localkey_f" {
-	filename = "temp_key"
+	filename = localkey.name
 	file_permission = "0600"
 	sensitive_content = openstack_compute_keypair_v2.localkey.private_key
 }
 
-resource "openstack_compute_instance_v2" "terraform_bio" {
-	name = "terraform_bio1"
+resource "openstack_compute_instance_v2" "terraform_ansible" {
+	name = var.instance_name
 	image_name = "ubuntu-focal-x86_64"
-	flavor_name = "standard.medium"
-	key_pair = "zenbook mint"
+	flavor_name = var.flavor
+	key_pair = var.ssh
     user_data = <<EOT
 #cloud-config
 
@@ -47,13 +43,13 @@ users:
 
 EOT
     network {
-        uuid = "03b21c24-910f-4ec5-a8f3-419db219b383"
+        uuid = var.local_network_id
     }
 }
 
 resource "openstack_compute_floatingip_associate_v2" "ubuntu_fip" {
-	floating_ip = "78.128.250.94"
-	instance_id = openstack_compute_instance_v2.terraform_bio.id
+	floating_ip = var.floating_ip
+	instance_id = openstack_compute_instance_v2.terraform_ansible.id
 
 
     provisioner "remote-exec" {
@@ -62,14 +58,14 @@ resource "openstack_compute_floatingip_associate_v2" "ubuntu_fip" {
             type = "ssh"
             user        = "deployadm"
             private_key = openstack_compute_keypair_v2.localkey.private_key
-            host = "78.128.250.94"
+            host = var.floating_ip
         } 
     }
 
     provisioner "local-exec" {
         command =  <<EOF
 pip3 install ansible
-ansible-playbook  -u deployadm -i '${self.floating_ip},' --private-key temp_key --ssh-extra-args='-o StrictHostKeyChecking=no' playbook.yml
+ansible-playbook  -u deployadm -i '${self.floating_ip},' --private-key localkey.name --ssh-extra-args='-o StrictHostKeyChecking=no' playbook.yml
 EOF
     }
 }
