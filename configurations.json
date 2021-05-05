@@ -36,6 +36,26 @@
        }
     },
     {
+      "name": "ansible",
+      "variables": {
+       "api": ["ssh", "local_network_id", "floating_ip"],
+       "string": ["instance_name"],
+       "options": ["flavor"],
+       "session": ["token"]
+      },
+      "flavor": {
+            "default": "standard.medium",
+            "options": [
+              "standard.tiny",
+              "standard.small",
+              "standard.medium",
+              "standard.large",
+              "standard.2core-16ram",
+              "standard.memory"
+            ]     
+       }
+    },
+    {
       "name": "terraform",
       "variables":{
        "api": ["ssh", "local_network_id", "floating_ip"],
