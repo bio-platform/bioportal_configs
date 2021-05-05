@@ -14,7 +14,7 @@ provider "openstack" {
 }
 
 resource "openstack_compute_keypair_v2" "localkey" {
-	name = join("", ["temp_key", uuid()]
+	name = join("", ["temp_key", uuid()])
 }
 
 resource "local_file" "localkey_f" {
