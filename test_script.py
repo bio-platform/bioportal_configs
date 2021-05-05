@@ -15,7 +15,7 @@ def check_config():
 	with open('configurations.json') as json_file:
 		data = json.load(json_file)
 	for machine in data["machines"]:
-		print(machine["name"])
+		print("\n", machine["name"],)
 		if machine.get("variables") is None:
 			print("MISSING VARIABLES KEY")
 			return 1
@@ -35,6 +35,8 @@ def check_config():
 		tf = Terraform(working_dir=machine["name"])
 		code, err, log = tf.plan()
 		if code:
+			print("error")
+			print(log)
 			if log.find("No configuration files") != -1:
 				print("NO TERRAFORM FILE FOUND, PLEASE CREATE ONE")
 				return 1
