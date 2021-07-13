@@ -8,7 +8,7 @@
           {"name":"flavor",
            "default": "standard.2core-16ram",
            "options": ["standard.2core-16ram"]
-            }],
+            }]
     },
     {
       "name": "ubuntu",
@@ -18,7 +18,7 @@
             {"name":"flavor",
             "default": "standard.medium",
             "options": ["standard.tiny", "standard.small", "standard.medium", "standard.large", "standard.2core-16ram", "standard.memory"]
-            }],
+            }]
     },
     {
       "name": "ansible",
@@ -28,7 +28,7 @@
             {"name":"flavor",
              "default": "standard.medium",
               "options": ["standard.tiny", "standard.small", "standard.medium", "standard.large", "standard.2core-16ram", "standard.memory"]
-            }],
+            }]
     },
     {
       "name": "terraform",
@@ -40,5 +40,5 @@
             }],
       "numberValues": ["n", "volume_size"]
     }
-  ],
+  ]
 }
