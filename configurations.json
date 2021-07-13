@@ -2,6 +2,7 @@
   "machines": [
     {
       "name": "bioconductor",
+      "tags":["bioinformatics"],
       "api": ["ssh", "local_network_id", "floating_ip"],
       "textValues": ["instance_name"],
       "options": [
@@ -12,6 +13,7 @@
     },
     {
       "name": "ubuntu",
+      "tags" : ["plain"],
       "api": ["ssh", "local_network_id", "floating_ip"],
       "textValues": ["instance_name"],
       "options":[
@@ -22,6 +24,7 @@
     },
     {
       "name": "ansible",
+      "tags" : ["bioinformaitcs", "plain"],
       "api": ["ssh", "local_network_id", "floating_ip"],
       "textValues": ["instance_name"],
       "options":[
@@ -32,6 +35,7 @@
     },
     {
       "name": "terraform",
+      "tags": ["cluster"],
       "api": ["ssh", "local_network_id", "floating_ip"],
       "options": [
             {"name":"flavor",
