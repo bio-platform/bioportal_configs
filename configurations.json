@@ -2,83 +2,43 @@
   "machines": [
     {
       "name": "bioconductor",
-      "variables": {
       "api": ["ssh", "local_network_id", "floating_ip"],
-      "string": ["instance_name"],
-      "options": ["flavor"],
-      "session" :["user_name", "user_email", "token"]
-      },
-      "flavor": {
-            "default": "standard.2core-16ram",
-            "options": [
-              "standard.2core-16ram"
-            ]     
-      }
+      "textValues": ["instance_name"],
+      "options": [
+          {"name":"flavor",
+           "default": "standard.2core-16ram",
+           "options": ["standard.2core-16ram"]
+            }],
     },
     {
       "name": "ubuntu",
-      "variables": {
-       "api": ["ssh", "local_network_id", "floating_ip"],
-       "string": ["instance_name"],
-       "options": ["flavor"],
-       "session": ["token"]
-      },
-      "flavor": {
+      "api": ["ssh", "local_network_id", "floating_ip"],
+      "textValues": ["instance_name"],
+      "options":[
+            {"name":"flavor",
             "default": "standard.medium",
-            "options": [
-              "standard.tiny",
-              "standard.small",
-              "standard.medium",
-              "standard.large",
-              "standard.2core-16ram",
-              "standard.memory"
-            ]     
-       }
+            "options": ["standard.tiny", "standard.small", "standard.medium", "standard.large", "standard.2core-16ram", "standard.memory"]
+            }],
     },
     {
       "name": "ansible",
-      "variables": {
-       "api": ["ssh", "local_network_id", "floating_ip"],
-       "string": ["instance_name"],
-       "options": ["flavor"],
-       "session": ["token"]
-      },
-      "flavor": {
-            "default": "standard.medium",
-            "options": [
-              "standard.tiny",
-              "standard.small",
-              "standard.medium",
-              "standard.large",
-              "standard.2core-16ram",
-              "standard.memory"
-            ]     
-       }
+      "api": ["ssh", "local_network_id", "floating_ip"],
+      "textValues": ["instance_name"],
+      "options":[
+            {"name":"flavor",
+             "default": "standard.medium",
+              "options": ["standard.tiny", "standard.small", "standard.medium", "standard.large", "standard.2core-16ram", "standard.memory"]
+            }],
     },
     {
       "name": "terraform",
-      "variables":{
-       "api": ["ssh", "local_network_id", "floating_ip"],
-       "options": ["flavor"],
-       "session": ["token"],
-       "int": ["n", "volume_size"]
-       },
-      "flavor": {
-            "default": "standard.medium",
-            "options": [
-              "standard.tiny",
-              "standard.small",
-              "standard.medium",
-              "standard.large",
-              "standard.2core-16ram",
-              "standard.memory"
-            ]
-       }
+      "api": ["ssh", "local_network_id", "floating_ip"],
+      "options": [
+            {"name":"flavor",
+             "default": "standard.medium",
+              "options": ["standard.tiny", "standard.small", "standard.medium", "standard.large", "standard.2core-16ram", "standard.memory"]
+            }],
+      "numberValues": ["n", "volume_size"]
     }
   ],
-    "api_endpoints": {
-      "floating_ip": "/floating_ips",
-      "local_network_id": "/networks",
-      "ssh": "/keypairs"
-    }
 }
