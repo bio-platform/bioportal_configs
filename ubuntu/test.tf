@@ -23,7 +23,10 @@ resource "openstack_compute_instance_v2" "terra_ubuntu" {
 
     network {
         uuid = var.local_network_id
-    }    
+    } 
+    metadata = {
+        instructions = "ubuntu"
+    }   
 }
 
 resource "openstack_compute_floatingip_associate_v2" "ubuntu_fip" {

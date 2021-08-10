@@ -46,6 +46,9 @@ EOT
     network {
         uuid = var.local_network_id
     }
+    metadata = {
+        instructions = "ansible"
+    }
 }
 
 resource "openstack_compute_floatingip_associate_v2" "ubuntu_fip" {
