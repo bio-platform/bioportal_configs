@@ -9,7 +9,8 @@
           {"name":"flavor",
            "default": "standard.2core-16ram",
            "options": ["standard.2core-16ram"]
-            }]
+            }],
+      "instructions":"Instructions to connect to this machine"  
     },
     {
       "name": "ubuntu",
@@ -20,7 +21,8 @@
             {"name":"flavor",
             "default": "standard.medium",
             "options": ["standard.tiny", "standard.small", "standard.medium", "standard.large", "standard.2core-16ram", "standard.memory"]
-            }]
+            }],
+       "instructions":"Instructions to connect to this machine"  
     },
     {
       "name": "ansible",
@@ -31,7 +33,8 @@
             {"name":"flavor",
              "default": "standard.medium",
               "options": ["standard.tiny", "standard.small", "standard.medium", "standard.large", "standard.2core-16ram", "standard.memory"]
-            }]
+            }],
+       "instructions":"Instructions to connect to this machine"  
     },
     {
       "name": "terraform",
@@ -42,7 +45,8 @@
              "default": "standard.medium",
               "options": ["standard.tiny", "standard.small", "standard.medium", "standard.large", "standard.2core-16ram", "standard.memory"]
             }],
-      "numberValues": ["n", "volume_size"]
+      "numberValues": ["n", "volume_size"],
+      "instructions":"Instructions to connect to this machine"  
     }
   ]
 }
