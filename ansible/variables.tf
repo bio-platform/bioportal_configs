@@ -1,17 +1,21 @@
 variable "instance_name" {
   type = string
+  default = "default"
 }
 
 variable "ssh" {
   type = string
+  default = "default"
 }
 
 variable "local_network_id" {
   type = string
+  default = "default"
 }
 
 variable "floating_ip" {
   type = string
+  default = "default"
 }
 
 variable "token" {
@@ -20,4 +24,5 @@ variable "token" {
 
 variable "flavor" {
     type = string
+    default = "default"
 }
