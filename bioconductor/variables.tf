@@ -28,6 +28,10 @@ variable "floating_ip" {
   default = "default"
 }
 
+variable "workspace_id" {
+  type = string
+}
+
 variable "token" {
   type = string
 }

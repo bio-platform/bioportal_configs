@@ -48,6 +48,7 @@ EOT
     }
     metadata = {
         instructions = "ansible"
+        workspace_id = var.workspace_id
     }
 }
 

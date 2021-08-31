@@ -29,6 +29,7 @@ resource "openstack_compute_instance_v2" "terraform_bio" {
         Bioclass_user = var.user_email
         Bioclass_email = var.user_name
         instructions = "bioconductor"
+        workspace_id = var.workspace_id
     }
 }	
 
