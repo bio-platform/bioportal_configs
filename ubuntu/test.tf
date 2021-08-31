@@ -26,6 +26,7 @@ resource "openstack_compute_instance_v2" "terra_ubuntu" {
     } 
     metadata = {
         instructions = "ubuntu"
+	workspace_id = var.workspace_id
     }   
 }
 
