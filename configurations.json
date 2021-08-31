@@ -4,7 +4,7 @@
       "name": "bioconductor",
       "tags":["bioinformatics"],
       "api": ["ssh", "local_network_id", "floating_ip"],
-      "textValues": ["instance_name", "workspace_id"],
+      "textValues": ["instance_name"],
       "options": [
           {"name":"flavor",
            "default": "standard.2core-16ram",
@@ -16,7 +16,7 @@
       "name": "ubuntu",
       "tags" : ["plain"],
       "api": ["ssh", "local_network_id", "floating_ip"],
-      "textValues": ["instance_name", "workspace_id"],
+      "textValues": ["instance_name"],
       "options":[
             {"name":"flavor",
             "default": "standard.medium",
@@ -28,7 +28,7 @@
       "name": "ansible",
       "tags" : ["bioinformaitcs", "plain"],
       "api": ["ssh", "local_network_id", "floating_ip"],
-      "textValues": ["instance_name", "workspace_id"],
+      "textValues": ["instance_name"],
       "options":[
             {"name":"flavor",
              "default": "standard.medium",
@@ -46,8 +46,7 @@
               "options": ["standard.tiny", "standard.small", "standard.medium", "standard.large", "standard.2core-16ram", "standard.memory"]
             }],
       "numberValues": ["n", "volume_size"],
-      "instructions":"Instructions to connect to this machine",
-      "textValues": ["workspace_id"]
+      "instructions":"Instructions to connect to this machine"
     }
   ]
 }
