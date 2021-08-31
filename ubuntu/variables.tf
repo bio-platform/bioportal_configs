@@ -22,6 +22,10 @@ variable "token" {
   type = string
 }
 
+variable "workspace_id"{
+  type = string 
+}
+
 variable "flavor" {
     type = string
     default = "default"
