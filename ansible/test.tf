@@ -47,7 +47,7 @@ EOT
         uuid = var.local_network_id
     }
     metadata = {
-        instructions = "ansible"
+        name = "ansible"
         workspace_id = var.workspace_id
     }
 }
