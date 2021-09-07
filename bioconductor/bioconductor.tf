@@ -18,7 +18,7 @@ provider "openstack" {
 
 resource "openstack_compute_instance_v2" "terraform_bio" {
 	name = var.instance_name
-	image_name = "debian-9-x86_64_bioconductor"
+	image_name = "debian-10-x86_64_bioconductor"
 	flavor_name = "standard.2core-16ram"
 	key_pair = var.ssh
     user_data = file("./cloud-init-bioconductor-image.sh")
