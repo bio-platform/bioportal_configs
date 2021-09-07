@@ -26,8 +26,8 @@ resource "openstack_compute_instance_v2" "terraform_bio" {
         uuid = var.local_network_id
     }   
     metadata = {
-        Bioclass_user = var.user_email
-        Bioclass_email = var.user_name
+        Bioclass_user = var.user_name
+        Bioclass_email = var.user_email
         name = "bioconductor"
         workspace_id = var.workspace_id
     }
