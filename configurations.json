@@ -26,7 +26,7 @@
     },
     {
       "name": "ansible",
-      "tags" : ["bioinformaitcs", "plain"],
+      "tags" : ["bioinformatics", "plain"],
       "api": ["ssh", "local_network_id", "floating_ip"],
       "textValues": ["instance_name"],
       "options":[
