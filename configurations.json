@@ -10,7 +10,7 @@
            "default": "standard.2core-16ram",
            "options": ["standard.2core-16ram"]
             }],
-      "instructions":"Instructions to connect to this machine"  
+      "instructions":"To access this this virtual machine, please type this command to your command line `ssh -l <username> <floating_ip>`"  
     },
     {
       "name": "ubuntu",
@@ -22,7 +22,7 @@
             "default": "standard.medium",
             "options": ["standard.tiny", "standard.small", "standard.medium", "standard.large", "standard.2core-16ram", "standard.memory"]
             }],
-       "instructions":"Instructions to connect to this machine"  
+       "instructions":"To access this virtual machine, please type this command to your command line: `ssh <floating_ip>`"  
     },
     {
       "name": "ansible",
@@ -34,11 +34,11 @@
              "default": "standard.medium",
               "options": ["standard.tiny", "standard.small", "standard.medium", "standard.large", "standard.2core-16ram", "standard.memory"]
             }],
-       "instructions":"Instructions to connect to this machine"  
+       "instructions":"To access this virtual machine, please type this command to your command line: `ssh <floating_ip>`"  
     },
     {
       "name": "terraform",
-      "tags": ["cluster"],
+      "tags": ["cluster", "hadoop"],
       "api": ["ssh", "local_network_id", "floating_ip"],
       "options": [
             {"name":"flavor",
@@ -46,7 +46,7 @@
               "options": ["standard.tiny", "standard.small", "standard.medium", "standard.large", "standard.2core-16ram", "standard.memory"]
             }],
       "numberValues": ["n", "volume_size"],
-      "instructions":"Instructions to connect to this machine"
+      "instructions":"Instructions for Hadoop machine INCOMING"
     }
   ]
 }
