@@ -5,6 +5,7 @@ terraform {
     openstack = {
       source = "terraform-provider-openstack/openstack"
     }
+    http = {}
   }
   required_version = ">= 0.13"
 }
@@ -16,12 +17,16 @@ provider "openstack" {
     allow_reauth = false
 }
 
+data "http" "bioconductor_init" {
+  url = "https://raw.githubusercontent.com/bio-platform/bio-class-deb10/main/install/cloud-init-bioconductor-image.sh"
+}
+
 resource "openstack_compute_instance_v2" "terraform_bio" {
 	name = var.instance_name
 	image_name = "debian-10-x86_64_bioconductor"
 	flavor_name = "standard.2core-16ram"
 	key_pair = var.ssh
-    user_data = file("./cloud-init-bioconductor-image.sh")
+    user_data = data.http.bioconductor_init.body
     network {
         uuid = var.local_network_id
     }   
