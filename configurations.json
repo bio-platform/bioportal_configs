@@ -22,7 +22,7 @@
             "default": "standard.medium",
             "options": ["standard.tiny", "standard.small", "standard.medium", "standard.large", "standard.2core-16ram", "standard.memory"]
             }],
-       "instructions":"To access this virtual machine, please type this command to your command line: `ssh <floating_ip>`"  
+       "instructions":"To access this virtual machine, please type this command to your command line: `ssh ubuntu@<floating_ip>`"  
     },
     {
       "name": "ansible",
