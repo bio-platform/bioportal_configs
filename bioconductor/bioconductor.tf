@@ -21,6 +21,22 @@ data "http" "bioconductor_init" {
   url = "https://raw.githubusercontent.com/bio-platform/bio-class-deb10/main/install/cloud-init-bioconductor-image.sh"
 }
 
+resource "openstack_networking_secgroup_v2" "bioconductor_security_group" {
+  name        = "bioconductor_security_group"
+  description = "My bioconductor security group"
+}
+
+resource "openstack_networking_secgroup_rule_v2" "shh_rule" {
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  protocol          = "tcp"
+  port_range_min    = 22
+  port_range_max    = 22
+  remote_ip_prefix  = "0.0.0.0/0"
+  security_group_id = "${openstack_networking_secgroup_v2.bioconductor_security_group.id}"
+}
+
+
 resource "openstack_compute_instance_v2" "terraform_bio" {
 	name = var.instance_name
 	image_name = "debian-10-x86_64_bioconductor"
@@ -38,8 +54,17 @@ resource "openstack_compute_instance_v2" "terraform_bio" {
     }
 }	
 
-resource "openstack_compute_floatingip_associate_v2" "test-server-fip-1" {
-	floating_ip = var.floating_ip
+resource "openstack_networking_floatingip_v2" "floating_ip" {
+  pool = "public-cesnet-78-128-250-PERSONAL"
+  count = var.floating_ip == "default" ? 1 : 0
+  lifecycle {
+    prevent_destroy = true 
+  }
+}
+
+resource "openstack_compute_floatingip_associate_v2" "bioconductor_fip" {
+	floating_ip = var.floating_ip == "default" ? "${openstack_networking_floatingip_v2.floating_ip[0].address}" : var.floating_ip
 	instance_id = openstack_compute_instance_v2.terraform_bio.id
 }
+
 
