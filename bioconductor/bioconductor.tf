@@ -52,6 +52,7 @@ resource "openstack_compute_instance_v2" "terraform_bio" {
         name = "bioconductor"
         workspace_id = var.workspace_id
     }
+    security_groups = ["${openstack_networking_secgroup_v2.bioconductor_security_group.id}"]
 }	
 
 resource "openstack_networking_floatingip_v2" "floating_ip" {
