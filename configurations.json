@@ -49,7 +49,7 @@
       "instructions":"Instructions for Hadoop machine INCOMING"
     },
     {
-      "name": "Kubernetes",
+      "name": "kubernetes",
         "tags": ["cluster", "kubernetes"],
         "api": ["ssh", "floating_ip"],
         "options": [
