@@ -48,16 +48,17 @@
       "numberValues": ["n", "volume_size"],
       "instructions":"Instructions for Hadoop machine INCOMING"
     },
-    "name": "Kubernetes",
-      "tags": ["cluster", "kubernetes"],
-      "api": ["ssh", "floating_ip"],
-      "options": [
-            {"name":"flavor",
-             "default": "standard.medium",
-              "options": ["standard.medium"]
-            }],
-      "numberValues": ["n"],
-      "instructions":"Instructions for Kubernetes machine INCOMING"
+    {
+      "name": "Kubernetes",
+        "tags": ["cluster", "kubernetes"],
+        "api": ["ssh", "floating_ip"],
+        "options": [
+              {"name":"flavor",
+               "default": "standard.medium",
+                "options": ["standard.medium"]
+              }],
+        "numberValues": ["n"],
+        "instructions":"Instructions for Kubernetes machine INCOMING"
     }
   ]
 }
