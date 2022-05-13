@@ -51,7 +51,7 @@
     {
       "name": "kubernetes",
         "tags": ["cluster", "kubernetes"],
-        "api": ["ssh", "floating_ip"],
+        "api": ["ssh", "local_network_id", "floating_ip"],
         "options": [
               {"name":"flavor",
                "default": "standard.medium",
